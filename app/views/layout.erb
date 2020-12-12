@@ -14,15 +14,16 @@
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
   <body>
+  
+  <div class="wrapper">
+  
   <div class="nav">
     <% if logged_in? %>
+    <a href="/restaurants">All Restaurants</a>
+    <a href="/restaurants/new">Create Post</a>
     <a href="/logout">Log Out</a>
-      <a href="/posts">All Posts</a>
-      <a href="/posts/new">Create Post</a>
       <%  end %> 
   </div>
-
-    <div class="wrapper">
 
         <%= yield %>
 
