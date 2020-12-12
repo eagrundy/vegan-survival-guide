@@ -5,6 +5,7 @@ if ActiveRecord::Migrator.needs_migration?
 end
 
 use UsersController
+# use PostsController
 
 # To send PATCH and DELETE requests, I need this:
 use Rack::MethodOverride
