@@ -1,42 +1,62 @@
 class UsersController < ApplicationController
 
     get '/login' do
-        erb :login
+        erb :'users/login'
     end
 
+    #create a session
     post '/login' do
+        # Receive the input from the login form
+        # Find the user
         @user = User.find_by(email: params[:email])
+        # authenticate user
         if @user && @user.authenticate(params[:password])
+            # log user in, creating a session, adding a key/value pair to session hash
             session[:user_id] = @user.id
+            flash[:message] = "Welcome back, #{@user.name}!"
+            # always flash-message before redirect
+            # goes to user profile
             redirect "/users/#{@user.id}"
         else
+            # Show an error message
+            flash[:errors] = "Invalid email and/or password! Try again!"
+            #redirect to login form
             redirect '/login'
         end
     end
 
+    # user Show route
     get '/users/:id' do
+    #finds the user
         @user = User.find_by(id: params[:id])
-        # erb :'/users/show'
+        erb :'/users/show'
     end
 
+    #render sign up form
     get '/signup' do
-        erb :signup
+        erb :"users/signup"
     end
 
+    #create new user using sign up form
     post '/users' do
         @user = User.new(params)
+        #log user in, creating a session, adding a key/value pair to session hash
         if @user.save
-        session[:user_id] = @user.id
-        redirect "/users/#{@user.id}"
+            session[:user_id] = @user.id
+            flash[:message] = "Welcome, #{@user.name}!"
+            redirect "/users/#{@user.id}"
         else
+            # Invalid input
+            flash[:errors] = "Failure to create account: #{@user.errors.full_messages.to_sentence}"
             redirect '/signup'
+        end
     end
 
+    
+    #logs out user by emptying session hash
     get '/logout' do
         # binding.pry
         session.clear
-        # binding.pry
         redirect '/'
     end
-end
 end

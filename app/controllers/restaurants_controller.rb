@@ -13,8 +13,12 @@ class RestaurantsController < ApplicationController
     # CREATE
     # get 'post/new' render a form to create a new post
     get "/restaurants/new" do
-        redirect_if_not_logged_in
-        erb :"restaurants/new"
+        if logged_in?
+            erb :'restaurants/new'
+        else
+            flash[:errors] = "You must be logged in to create a restaurant!"
+            redirect '/'
+        end
     end
 
     # post route to create a new post
@@ -22,10 +26,11 @@ class RestaurantsController < ApplicationController
         # receive the params that the user input in the create new restaurant form
         @restaurant = Restaurant.new(name: params[:name], options: params[:options], source: params[:source], image_url: params[:image_url], user_id: current_user.id)
         if @restaurant.save
+            # if input is valid, .save triggers validation
             flash[:message] = "Restaurant successfully created!"
-            redirect "/restaurants/#{post.id}"
+            redirect "/restaurants/#{@restaurant.id}"
         else
-            flash[:errors] = "Restaurant creation failure: #{@restaurant.errors.full_messages.to_sentence}"
+            flash[:errors] = "Restaurant creation failed: #{@restaurant.errors.full_messages.to_sentence}"
             redirect '/restaurants/new'
         end
     end
@@ -36,22 +41,26 @@ class RestaurantsController < ApplicationController
         # find the post
         # id is coming from url - params
         find_restaurant
+        # @restaurant = Restaurant.find(params[:id])
         erb :'restaurants/show'
     end
 
     # UPDATE
+
     # create link to edit form on restaurant show page
     # get posts/edit to render a form to edit a post
     get '/restaurants/:id/edit' do
-        redirect_if_not_logged_in
-        find_restaurant
+        @restaurant = Restaurant.find(params[:id])
+        # redirect_if_not_logged_in
+        # find_restaurant
         if authorized_to_edit?(@restaurant)
             erb :'/restaurants/edit'
-          else
-            # flash[:errors] = "Not authorized to edit."
-            redirect "/restaurants/#{@restaurant.id}"
-          end
+        else
+            flash[:errors] = "Not authorized to edit this restaurant."
+            redirect '/restaurants'
+            # /#{@restaurant.id}"
         end
+    end
 
     # patch route to update existing post
     patch '/restaurants/:id' do
@@ -61,9 +70,10 @@ class RestaurantsController < ApplicationController
     end
 
     # DELETE
+
     # delete route to delete an existing restaurant
     delete '/restaurants/:id' do
-        # we need the id to FIND the restaurant to delete
+        # we need the id to Find the restaurant to delete
         find_restaurant
         if authorized_to_edit?(@restaurant)
             @restaurant.destroy
@@ -79,5 +89,5 @@ class RestaurantsController < ApplicationController
 
     def find_restaurant
         @restaurant = Restaurant.find(params[:id])
-      end
+    end
 end
