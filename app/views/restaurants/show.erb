@@ -1,9 +1,21 @@
-<h3><%= @restaurant.name %></h3>
+<h1><%= @restaurant.name %></h1>
     <br><br>
-    <img src="<%= @restaurant.image_url %>" alt="<%= @restaurant.name %>" height="200" width="200">
-    <br><br>
+    <img src="<%= @restaurant.image_url %>" alt="<%= @restaurant.name %>" height="200" width="200"><br>
+    # <br><br>
     <p><strong>Options:</strong> <%= @restaurant.options %></p>
     <p><strong>Source:</strong> <%= @restaurant.source %></p>
     <p><strong>By:</strong> <%= @restaurant.user.name %></p>
     <strong>Created At: <%= @restaurant.created_at %></strong>
-    # <br><br>
+    <br><br>
+
+    <a href="/restaurants/<%= @restaurant.id %>/edit">Edit Restaurant</a>
+
+  <form class="" action="/restaurants/<%= @restaurant.id %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" name="" value="Delete This Restaurant">
+  </form>
+
+<% end %>
+
+
+
