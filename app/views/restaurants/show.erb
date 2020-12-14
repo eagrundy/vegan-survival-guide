@@ -5,7 +5,8 @@
     <p><strong>Options:</strong> <%= @restaurant.options %></p>
     <p><strong>Source:</strong> <%= @restaurant.source %></p>
     <p><strong>By:</strong> <%= @restaurant.user.name %></p>
-    <strong>Created At: <%= @restaurant.created_at %></strong>
+    <h5>Created At: <%= @restaurant.created_at %><h5>
+    Updated At: <%= @restaurant.updated_at %>
     <br><br>
 
     <% if authorized_to_edit?(@restaurant) %>

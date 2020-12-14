@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 
     #render sign up form
     get '/signup' do
-        erb :"users/signup"
+        erb :'users/signup'
     end
 
     #create new user using sign up form

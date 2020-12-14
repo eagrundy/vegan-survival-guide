@@ -1,5 +1,4 @@
 # Here I wrote the seed data for my application to test the funcionality of the application
-# User.destroy_all
 
 erica = User.create(name: "Erica", email: "erica@erica.com", bio: "I love animals", password: "123")
 

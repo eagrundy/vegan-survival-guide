@@ -1,12 +1,10 @@
 <h1>Edit Restaurant Here</h1>
 
-<form class="" action="/restaurants/<%= @restaurant.id %>" method="post">
-  <input type="hidden" name="_method" value="patch">
-  <label for="name">Name:</label>
-  <input type="text" name="name" value ="<%= @restaurant.name %>">
-  <label for="options">Options:</label>
-  <textarea name="options" style="width:auto; height:auto;"><%= @restaurant.options %></textarea>
-  <label for="image_url">Image URL:</label>
-  <input type="text" name="image_url" value ="<%= @restaurant.image_url %>">
-  <input type="submit" name="" value="Edit">
+<form action="/restaurants/<%= @restaurant.id %>" method="post">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+  Name: <input type="text" name="name" value ="<%= @restaurant.name %>">
+  Options: <input type="text" name="options" value="<%= @restaurant.options %>">
+  Source: <input type="text" name="source" value="<%= @restaurant.source %>">
+  Image_url: <input type="text" name="image_url" value ="<%= @restaurant.image_url %>">
+  <input type=submit>
 </form>
