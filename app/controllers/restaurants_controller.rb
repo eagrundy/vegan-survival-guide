@@ -77,7 +77,7 @@ class RestaurantsController < ApplicationController
         @restaurant = Restaurant.find(params[:id])
         if authorized_to_edit?(@restaurant)
             @restaurant.destroy
-            flash[:message] = "Successfully deleted!"
+            flash[:message] = "Restaurant Successfully deleted!"
             redirect '/restaurants'
         else
             flash[:errors] = "You're not authorized to delete this restaurant."
