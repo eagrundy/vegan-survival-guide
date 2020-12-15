@@ -5,7 +5,7 @@ class RestaurantsController < ApplicationController
     # get 'post/new' render a form to create a new post
     get "/restaurants/new" do
         if logged_in?
-            erb :'restaurants/new'
+            erb :'/restaurants/new'
         else
             flash[:errors] = "You must be logged in to create a restaurant!"
             redirect '/'

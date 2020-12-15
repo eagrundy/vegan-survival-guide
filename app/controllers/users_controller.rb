@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
     get '/login' do
-        erb :'users/login'
+        erb :'/users/login'
     end
 
     #create a session
@@ -34,12 +34,13 @@ class UsersController < ApplicationController
 
     #render sign up form
     get '/signup' do
-        erb :'users/signup'
+        erb :'/users/signup'
     end
 
     #create new user using sign up form
-    post '/users' do
+    post '/users/signup' do
         @user = User.new(params)
+        # User.create(name: params[:name], email: params[:email], password: params[:password], bio: params[:bio])
         #log user in, creating a session, adding a key/value pair to session hash
         if @user.save
             session[:user_id] = @user.id

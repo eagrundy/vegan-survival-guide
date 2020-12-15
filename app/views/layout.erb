@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
   <body>
+  
   <div class="wrapper">
   
   <% if flash[:message] %>
@@ -21,14 +22,15 @@
   <% elsif flash[:errors] %>
   <h3 style="color:red;"><%= flash[:errors] %></h3>
   <% end %>
-
+  
   <div class="nav">
-    <% if logged_in? %>
-    <a href="/restaurants">All Restaurants</a>
-    <a href="/restaurants/new">Create a New Restaurant</a>
-    <a href="/logout">Log Out</a>
-      <%  end %> 
+  <% if logged_in? %>
+  <a href="/restaurants">All Restaurants</a>
+  <a href="/restaurants/new">Create a New Restaurant</a>
+  <a href="/logout">Log Out</a>
+  <%  end %> 
   </div>
+  
 
         <%= yield %>
 
@@ -44,3 +46,33 @@
     <![endif]-->
   </body>
 </html>
+
+
+<style>
+.navbar {
+  background-color: #99dcf7;
+  overflow: hidden;
+  margin: 0;
+}
+
+.navbar a {
+  float: left;
+  color: #f2f2f2;
+  /* text-align: center; */
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+</style>
+

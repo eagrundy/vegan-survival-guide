@@ -1,15 +1,17 @@
-<h2>Sign Up</h2>
 
-<form class="" action="/users" method="post">
-  <label for="name">Name: </label>
-  <input type="text" name="name" value="">
-  <label for="email">Email: </label>
-  <input type="text" name="email" value="">
-  <label for="password">Password: </label>
-  <input type="password" name="password" value="">
-  <label for="password">Bio: </label>
-  <input type="text" name="bio" value="">
-  <input type="submit" name="" value="Create User">
+<h2> Create Your Account Here: </h2><br>
+
+<form action='/users/signup' method="POST">
+  <label> Name: </label>
+  <input type="text" name="name"><br><br>
+  <label>Email: </label>
+  <input type="text" name="email"><br><br>
+  <label>Password: </label>
+  <input type="password" name="password"><br><br>
+  <label>Tell us a little about you: </label><br>
+  <textarea type="text" name="bio" rows="8" cols="40"> </textarea><br><br>
+  <input type="submit" name="" value="Sign Up"><br><br>
 </form>
+
 
 <a href="/">Back</a>
