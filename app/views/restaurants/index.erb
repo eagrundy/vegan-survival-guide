@@ -4,5 +4,7 @@
     <img src="<%= restaurant.image_url %>" alt="<%= restaurant.name %>" height="200" width="270">
     <br><br>
     <p><strong>Options:</strong> <%= restaurant.options %></p>
-    <p><strong>Source:</strong> <%= restaurant.source %></p><br>
+    <p><strong>Source:</strong> <%= restaurant.source %></p>
+    <p><strong>Created by:</strong> <%= restaurant.user.name %></p>
+    <h5><p>Last update: <%= restaurant.updated_at %></p></h5><br>
     <% end %>

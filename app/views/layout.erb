@@ -16,6 +16,15 @@
   <body>
   
   <div class="wrapper">
+
+  <div class="nav">
+
+  <% if logged_in? %>
+  <a href="/restaurants">All Restaurants</a> ||
+  <a href="/restaurants/new">Create a New Restaurant</a> ||
+  <a href="/users">Your Profile Page</a> ||
+  <a href="/logout">Log Out</a>
+  <%  end %> 
   
   <% if flash[:message] %>
   <h3 style="color:green;"><%= flash[:message] %></h3>
@@ -23,12 +32,6 @@
   <h3 style="color:red;"><%= flash[:errors] %></h3>
   <% end %>
   
-  <div class="nav">
-  <% if logged_in? %>
-  <a href="/restaurants">All Restaurants</a>
-  <a href="/restaurants/new">Create a New Restaurant</a>
-  <a href="/logout">Log Out</a>
-  <%  end %> 
   </div>
   
 

@@ -9,7 +9,6 @@ end
 use Rack::MethodOverride
 
 # Where I mount controllers
+run ApplicationController
 use UsersController
 use RestaurantsController
-
-run ApplicationController

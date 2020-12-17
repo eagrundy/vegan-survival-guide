@@ -2,9 +2,9 @@
 
 <form action="/restaurants/<%= @restaurant.id %>" method="post">
   <input id="hidden" type="hidden" name="_method" value="patch">
-  Name: <input type="text" name="name" value ="<%= @restaurant.name %>">
-  Options: <input type="text" name="options" value="<%= @restaurant.options %>">
-  Source: <input type="text" name="source" value="<%= @restaurant.source %>">
+  Name: <input type="text" name="name" value ="<%= @restaurant.name %>"><br><br>
+  Options: <input type="text" name="options" value="<%= @restaurant.options %>"><br><br>
+  Source: <input type="text" name="source" value="<%= @restaurant.source %>"><br><br>
   Image_url: <input type="text" name="image_url" value ="<%= @restaurant.image_url %>">
   <input type=submit>
 </form>

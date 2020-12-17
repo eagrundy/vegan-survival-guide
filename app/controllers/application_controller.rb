@@ -19,6 +19,7 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+
   #helper methods for user that has logged in
   helpers do
     def current_user

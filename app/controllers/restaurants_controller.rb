@@ -41,7 +41,6 @@ class RestaurantsController < ApplicationController
         # find the post
         # id is coming from url - params
         @restaurant = Restaurant.find(params[:id])
-        # @restaurant = Restaurant.find(params[:id])
         erb :'/restaurants/show'
     end
     

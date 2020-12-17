@@ -1,4 +1,10 @@
-<h1><%= @user.name %></h1>
+<% if logged_in? %>
+    <br><h2><%=current_user.name %>'s Profile Page</h2>	    
+<%end%>
+
 <br><br>
 <p>Email: <%= @user.email %></p>
 <p>Bio: <%= @user.bio %></p>
+
+
+
