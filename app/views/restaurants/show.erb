@@ -1,12 +1,12 @@
 <h1><%= @restaurant.name %></h1>
     <br><br>
-    <img src="<%= @restaurant.image_url %>" alt="<%= @restaurant.name %>" height="270" width="270"><br>
+    <img src="<%= @restaurant.image_url %>" alt="<%= @restaurant.name %>" height="250" width="290"><br>
     <br><br>
     <p><strong>Options:</strong> <%= @restaurant.options %></p>
     <p><strong>Source:</strong> <%= @restaurant.source %></p>
     <p><strong>By:</strong> <%= @restaurant.user.name %></p>
-    <h6>Created At: <%= @restaurant.created_at %><br>
-    Last update: <%= @restaurant.updated_at %></h6>
+    <h6>Created At: <%= @restaurant.created_at.strftime("%m/%d/%Y at %I:%M%p") %><br>
+    Last update: <%= @restaurant.updated_at.strftime("%m/%d/%Y at %I:%M%p") %></h6>
     <br><br>
 
     <% if authorized_to_edit?(@restaurant) %>

@@ -29,6 +29,7 @@ class RestaurantsController < ApplicationController
     
     # READ
     
+    # controller is taking the request, accessing the database and rendering the info by giving it to the view
     # index, route for all restaurants posts
     get '/restaurants' do
         @restaurants = Restaurant.all
@@ -64,9 +65,14 @@ class RestaurantsController < ApplicationController
     # patch route to update existing post
     patch '/restaurants/:id' do
         @restaurant = Restaurant.find(params[:id])
-        @restaurant.update(name: params[:name], options: params[:options], source: params[:source], image_url: params[:image_url])
-        redirect "/restaurants/#{@restaurant.id}"
+        if authorized_to_edit?(@restaurant)
+            @restaurant.update(name: params[:name], options: params[:options], source: params[:source], image_url: params[:image_url])
+            redirect "/restaurants/#{@restaurant.id}"
+        else
+            flash[:errors] = "You're not authorized to edit this restaurant."
+            redirect "/restaurants/#{@restaurant.id}"
     end
+end
 
         # DELETE
 

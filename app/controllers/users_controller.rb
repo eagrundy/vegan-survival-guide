@@ -2,12 +2,15 @@ class UsersController < ApplicationController
 
     get "/users" do
         redirect_if_not_logged_in
-        @user = current_user	
-        erb :'/users/show'
+        @restaurants = current_user.restaurants
+        @user = current_user
+        erb :"/users/show"
     end
 
     get '/login' do
-        erb :'/users/login'
+        redirect_if_not_logged_in
+        @restaurants = Restaurant.all
+        erb :"/users/login"
     end
 
     #create a session
@@ -62,8 +65,22 @@ class UsersController < ApplicationController
     
     #logs out user by emptying session hash
     get '/logout' do
-        # binding.pry
         session.clear
+        flash[:message] = "Logout successful."
         redirect '/'
     end
+
+    delete '/users/:id' do #delete user account and posts
+        redirect_if_not_logged_in
+        @user = User.find_by_id(params[:id])
+        if @user == current_user
+          @user.destroy
+          session.clear 
+          flash[:message] = "Your account and your posts were deleted."
+          redirect "/"
+        else
+          flash[:message] = "Not authorized to delete."
+          redirect "/users" 
+        end
+      end 
 end

@@ -6,5 +6,23 @@
 <p>Email: <%= @user.email %></p>
 <p>Bio: <%= @user.bio %></p>
 
+<br>
+<br>
+<h2>Here are your posts:</h2>
+<h5>You can edit or delete a restaurant by clicking on it.</h5>
+<br>
+<br>
+
+<% @restaurants.order('updated_at DESC').each do |r| %>
+    <h4><a href="/restaurants/<%=r.id%>"><%=r.name%></a></h4>
+    <h6>Last Updated: <%=r.updated_at.strftime("%m/%d/%Y at %I:%M%p")%></h6><br>
+<% end %>
 
 
+<br><br>
+<table class="buttons">
+    <form action="/users/<%= current_user.id %>" method="post">
+        <input id="hidden" type="hidden" name="_method" value="delete">
+        <input type="submit" value="Delete Your Account and posts"><br><br>
+      </form>
+</table>

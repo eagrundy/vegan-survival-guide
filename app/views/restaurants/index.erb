@@ -1,10 +1,10 @@
 <h1>All Restaurants</h1>
-<% @restaurants.each do |restaurant| %>
+<% @restaurants.order('updated_at DESC').each do |restaurant| %>
     <h3><a href="/restaurants/<%= restaurant.id %>"><%=restaurant.name %></a></h3>
     <img src="<%= restaurant.image_url %>" alt="<%= restaurant.name %>" height="200" width="270">
     <br><br>
     <p><strong>Options:</strong> <%= restaurant.options %></p>
     <p><strong>Source:</strong> <%= restaurant.source %></p>
     <p><strong>Created by:</strong> <%= restaurant.user.name %></p>
-    <h5><p>Last update: <%= restaurant.updated_at %></p></h5><br>
+    <h5><p>Last update: <%= restaurant.updated_at.strftime("%m/%d/%Y at %I:%M%p") %></p></h5><br>
     <% end %>

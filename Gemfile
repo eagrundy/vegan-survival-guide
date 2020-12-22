@@ -10,6 +10,7 @@ gem 'thin'
 gem 'shotgun'
 gem 'pry'
 gem 'bcrypt'
+# returns a hash algorithm "khjghgdfgd" for the password
 gem 'tux'
 gem 'sinatra-flash'
 

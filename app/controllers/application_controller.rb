@@ -4,6 +4,7 @@ class ApplicationController < Sinatra::Base
 
   configure do
     set :public_folder, 'public'
+    # sets where the views live
     set :views, 'app/views'
     # enable sessions
     enable :sessions
@@ -11,6 +12,7 @@ class ApplicationController < Sinatra::Base
     register Sinatra::Flash
   end
 
+  # controller is taking the request, then loads the file welcome
   get "/" do
     if logged_in?
       redirect "/users/#{current_user.id}"
@@ -23,6 +25,7 @@ class ApplicationController < Sinatra::Base
   #helper methods for user that has logged in
   helpers do
     def current_user
+      # @current_user ||= User.find(session[:user_id]) if session[:user_id]
       User.find_by(id: session[:user_id])
       # User.find(session[:user_id])
     end
