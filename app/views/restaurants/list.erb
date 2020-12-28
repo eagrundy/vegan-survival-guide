@@ -1,0 +1,7 @@
+<br>
+<h1>Restaurants</h1>
+
+<% @restaurants.order('name ASC').each do |restaurant| %>
+    <h3><a href="/restaurants/<%= restaurant.id %>"><%=restaurant.name %></a></h3>
+<% end %>
+<br>

@@ -20,23 +20,27 @@
   <div class="nav">
 
   <% if logged_in? %>
-  <a href="/restaurants">All Restaurants</a> ||
-  <a href="/restaurants/new">Create a New Restaurant</a> ||
-  <a href="/users">Your Profile Page</a> ||
-  <a href="/logout">Log Out</a>
+    <a href="/restaurants">Home</a> ||
+    <a href="/list/">Restaurants List</a> ||
+    <a href="/restaurants/new">Add a New Restaurant</a> ||
+    <a href="/users">Your Account</a> ||
+    <a href="/search">Search Restaurants</a> ||
+    <a href="/logout">Log Out</a>
   <%  end %> 
+  
+
   
   <% if flash[:message] %>
   <h3 style="color:green;"><%= flash[:message] %></h3>
-  <% elsif flash[:errors] %>
-  <h3 style="color:red;"><%= flash[:errors] %></h3>
+  <% elsif flash[:error] %>
+  <h3 style="color:red;"><%= flash[:error] %></h3>
   <% end %>
   
   </div>
+
   
-
-        <%= yield %>
-
+  <%= yield %>
+    
         <small>&copy; 2020 <strong>VeganSurvivalGuide</strong></small>
     
     </div>

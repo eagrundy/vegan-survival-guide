@@ -22,6 +22,21 @@ class ApplicationController < Sinatra::Base
   end
 
 
+  get '/search' do
+      erb :'/restaurants/search'
+  end
+ 
+
+  post "/search" do
+    if params[:sort][:keyword]
+      by_name = Restaurant.all.order('updated_at DESC').select{|restaurant|restaurant.name.downcase.include?(params[:sort][:keyword].downcase)}
+      by_options = Restaurant.all.order('updated_at DESC').select{|restaurant|restaurant.options.downcase.include?(params[:sort][:keyword].downcase)}
+      @restaurants = (by_name + by_options).uniq
+    end
+    erb :'restaurants/results'
+  end
+
+
   #helper methods for user that has logged in
   helpers do
     def current_user

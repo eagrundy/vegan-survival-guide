@@ -7,7 +7,7 @@ class RestaurantsController < ApplicationController
         if logged_in?
             erb :'/restaurants/new'
         else
-            flash[:errors] = "You must be logged in to create a restaurant!"
+            flash[:error] = "You must be logged in to create a restaurant!"
             redirect '/'
         end
     end
@@ -21,7 +21,7 @@ class RestaurantsController < ApplicationController
             flash[:message] = "Restaurant successfully created!"
             redirect "/restaurants/#{@restaurant.id}"
         else
-            flash[:errors] = "Restaurant creation failed: #{@restaurant.errors.full_messages.to_sentence}"
+            flash[:error] = "Restaurant creation failed: #{@restaurant.errors.full_messages.to_sentence}"
             redirect '/restaurants/new'
         end
     end
@@ -44,6 +44,13 @@ class RestaurantsController < ApplicationController
         @restaurant = Restaurant.find(params[:id])
         erb :'/restaurants/show'
     end
+
+    get "/list/" do
+        @restaurants = Restaurant.all
+        # render a unique list of all restaurants
+        erb :"/restaurants/list"
+    end
+
     
 
         # UPDATE
@@ -57,7 +64,7 @@ class RestaurantsController < ApplicationController
         if authorized_to_edit?(@restaurant)
             erb :'/restaurants/edit'
         else
-            flash[:errors] = "Not authorized to edit this restaurant."
+            flash[:error] = "Not authorized to edit this restaurant."
             redirect "/restaurants/#{@restaurant.id}"
         end
     end
@@ -67,12 +74,13 @@ class RestaurantsController < ApplicationController
         @restaurant = Restaurant.find(params[:id])
         if authorized_to_edit?(@restaurant)
             @restaurant.update(name: params[:name], options: params[:options], source: params[:source], image_url: params[:image_url])
+            flash[:message] = "Restaurant Edited!"
             redirect "/restaurants/#{@restaurant.id}"
         else
-            flash[:errors] = "You're not authorized to edit this restaurant."
+            flash[:error] = "You're not authorized to edit this restaurant!"
             redirect "/restaurants/#{@restaurant.id}"
+        end
     end
-end
 
         # DELETE
 
@@ -82,10 +90,10 @@ end
         @restaurant = Restaurant.find(params[:id])
         if authorized_to_edit?(@restaurant)
             @restaurant.destroy
-            flash[:message] = "Restaurant Successfully deleted!"
+            flash[:message] = "Restaurant deleted!"
             redirect '/restaurants'
         else
-            flash[:errors] = "You're not authorized to delete this restaurant."
+            flash[:error] = "You're not authorized to delete this restaurant."
             redirect "/restaurants/#{@restaurant.id}"
         end
     end

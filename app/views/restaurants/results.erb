@@ -1,6 +1,8 @@
 
 <br><br>
-<% @restaurants.order('updated_at DESC').each do |restaurant| %>
+<% if @restaurants.present? %>
+
+<% @restaurants.each do |restaurant| %>
     <h3><a href="/restaurants/<%= restaurant.id %>"><%=restaurant.name %></a></h3>
     <img src="<%= restaurant.image_url %>" alt="<%= restaurant.name %>" height="200" width="270">
     <br><br>
@@ -9,3 +11,13 @@
     <p><strong>Created by:</strong> <%= restaurant.user.name %></a></h3>
     <h5><p>Last update: <%= restaurant.updated_at.strftime("%m/%d/%Y at %I:%M%p") %></p></h5><br>
 <% end %>
+<% else %>
+    <%= flash[:error] = "There are no Restaurants containing the word(s): #{params[:sort][:keyword]}" %>
+    <% redirect '/search' %>
+<% end %>
+<br><br>
+
+
+
+
+

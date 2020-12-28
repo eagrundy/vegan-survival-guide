@@ -6,7 +6,7 @@
     <p><strong>Source:</strong> <%= @restaurant.source %></p>
     <p><strong>By:</strong> <%= @restaurant.user.name %></p>
     <h6>Created At: <%= @restaurant.created_at.strftime("%m/%d/%Y at %I:%M%p") %><br>
-    Last update: <%= @restaurant.updated_at.strftime("%m/%d/%Y at %I:%M%p") %></h6>
+    Last update: <%= @restaurant.updated_at.strftime("%m/%d/%Y at %I:%M%p") %></h6><br>
     <br><br>
 
     <% if authorized_to_edit?(@restaurant) %>

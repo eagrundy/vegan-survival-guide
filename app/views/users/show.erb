@@ -1,5 +1,5 @@
 <% if logged_in? %>
-    <br><h2><%=current_user.name %>'s Profile Page</h2>	    
+    <br><h2><%=current_user.name %>'s Account</h2>	    
 <%end%>
 
 <br><br>
@@ -20,9 +20,11 @@
 
 
 <br><br>
-<table class="buttons">
+
     <form action="/users/<%= current_user.id %>" method="post">
         <input id="hidden" type="hidden" name="_method" value="delete">
         <input type="submit" value="Delete Your Account and posts"><br><br>
-      </form>
-</table>
+    </form>
+
+
+
