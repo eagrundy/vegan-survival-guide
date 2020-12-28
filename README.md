@@ -4,7 +4,9 @@ Phase Two Project for Flatiron School's Software Engineering Bootcamp Program.
 This application allows a User to create an account, which allows them to:
 - Log in, Log out
 - create, edit, and delete Posts
-- View other's posts
+- View other user's posts
+- View a list with its own posts 
+- Search posts by keyword
 
 ## Installation
 
